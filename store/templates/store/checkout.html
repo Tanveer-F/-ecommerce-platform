@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load store_tags %}
+    <h1>Checkout</h1>
+    <h3>Order Summary</h3>
+    <ul>
+        {% for item in cart.items.all %}
+        <li>{{ item.product.name }} x {{ item.quantity }} - ${{ item.product.price|multiply:item.quantity }}</li>
+        {% endfor %}
+    </ul>
+    <h4>Total: ${{ cart.items.all|total_price }}</h4>
+    
+    <h3>Shipping Information</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">Place Order</button>
+    </form>
+{% endblock %}

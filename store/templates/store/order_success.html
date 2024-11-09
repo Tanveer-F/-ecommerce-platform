@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load store_tags %}
+    <h1>Order Placed Successfully!</h1>
+    <p>Your order ID is {{ order.id }}.</p>
+    <p>Total Price: ${{ order.total_price }}</p>
+    <a href="{% url 'store:product_list' %}" class="btn btn-primary">Continue Shopping</a>
+{% endblock %}
